@@ -1,0 +1,52 @@
+[package]
+name = "pn-eom"
+version = "0.1.0"
+edition = "2018"
+authors = ["Takaaki MINOMO <mino2357@gmail.com>"]
+
+[[bin]]
+name = "pn-eom"
+path = "main.rs"
+
+[dependencies]
+approx = "0.5.0"
+plotters = "0.3.1"
+yaml-rust = "0.4"
+serde_yaml = "0.8"
+serde = { version = "1.0", features = ["derive"] }
+
+[profile.dev]
+opt-level = 0
+debug = true
+split-debuginfo = '...'  # Platform-specific.
+debug-assertions = true
+overflow-checks = true
+lto = false
+panic = 'unwind'
+incremental = true
+codegen-units = 256
+rpath = false
+
+[profile.test]
+opt-level = 2
+debug = 2
+split-debuginfo = '...'  # Platform-specific.
+debug-assertions = true
+overflow-checks = true
+lto = false
+# panic = 'unwind'    # This setting is always ignored.
+incremental = true
+codegen-units = 256
+rpath = false
+
+[profile.release]
+opt-level = 2
+debug = false
+split-debuginfo = '...'  # Platform-specific.
+debug-assertions = false
+overflow-checks = false
+lto = false
+panic = 'unwind'
+incremental = false
+codegen-units = 16
+rpath = false
